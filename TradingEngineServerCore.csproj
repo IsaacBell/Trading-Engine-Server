@@ -27,4 +27,8 @@
 		<Folder Include="TradingEngineServerConfiguration\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\TradingEngineServerLogging\TradingEngineServerLogging.csproj" />
+	</ItemGroup>
+
 </Project>
