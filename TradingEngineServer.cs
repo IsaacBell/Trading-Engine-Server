@@ -13,10 +13,10 @@ namespace TradingEngineServer.Core
 {
     sealed class TradingEngineServer : BackgroundService, ITradingEngineServer
     {
-        private readonly ITextLogger _logger;
+        private readonly TextLogger _logger;
         private readonly TradingEngineServerConfiguration _tradingEngineServerConfig;
 
-        public TradingEngineServer(ITextLogger logger, IOptions<TradingEngineServerConfiguration> config)
+        public TradingEngineServer(TextLogger logger, IOptions<TradingEngineServerConfiguration> config)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _tradingEngineServerConfig = config.Value ?? throw new ArgumentNullException(nameof(config));
@@ -25,14 +25,14 @@ namespace TradingEngineServer.Core
         public Task Run(CancellationToken token) => ExecuteAsync(token);
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation($"Started {nameof(TradingEngineServer)}");
+            _logger.Info(nameof(TradingEngineServer), $"Started {nameof(TradingEngineServer)}");
             while (!stoppingToken.IsCancellationRequested) {
                 // Kill server
                 //CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
                 //cancellationTokenSource.Cancel();
                 //cancellationTokenSource.Dispose();
             }
-            _logger.LogInformation($"Stopped {nameof(TradingEngineServer)}");
+            _logger.Info(nameof(TradingEngineServer), $"Stopped {nameof(TradingEngineServer)}");
             return Task.CompletedTask;
         }
     }
